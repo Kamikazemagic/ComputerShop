@@ -24,5 +24,9 @@ namespace ComputerShop
         {
             InitializeComponent();
         }
+        private void loginButton_CLick(object sender, RoutedEventArgs e)
+        {
+            LargeWindow.Text = "Sikeres bejelntkezés.";
+        }
     }
 }
