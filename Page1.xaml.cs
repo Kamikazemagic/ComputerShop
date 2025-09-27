@@ -1,32 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ComputerShop
 {
-    /// <summary>
-    /// Interaction logic for Page1.xaml
-    /// </summary>
     public partial class Page1 : Page
     {
         public Page1()
         {
             InitializeComponent();
+
+            // Tesztkapcsolat az oldal betöltésekor
+            var db = new Connect();
+            if (db.TestConnection(out string msg))
+                LargeWindow.Text = msg;
+            else
+                LargeWindow.Text = "Hiba: " + msg;
         }
-        private void loginButton_CLick(object sender, RoutedEventArgs e)
+
+        // Bejelentkezés gomb
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LargeWindow.Text = "Sikeres bejelntkezés.";
+            var db = new Connect();
+
+            string username = userNameTextBox.Text;
+            string password = userPasswordTextBox.Password;
+
+            bool success = db.Login(username, password, out string msg);
+
+            LargeWindow.Text = msg;
+
+            MessageBox.Show(msg, success ? "Siker" : "Hiba", MessageBoxButton.OK,
+                            success ? MessageBoxImage.Information : MessageBoxImage.Error);
+        }
+
+        // Regisztráció gomb
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            // Navigálás a RegisterForm oldalra
+            if (this.NavigationService != null)
+            {
+                this.NavigationService.Navigate(new RegisterForm());
+            }
+            else
+            {
+                MessageBox.Show("Hiba: Nem lehet navigálni a RegisterForm oldalra.");
+            }
         }
     }
 }
