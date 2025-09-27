@@ -9,6 +9,80 @@
       Title="Page1">
 
     <Grid>
-        
+        <!-- Fő oszlopok -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Bal oldal -->
+        <Border Grid.Column="0" Background="LightGray">
+            <TextBlock x:Name="LargeWindow"
+                       Text="Üdv a rendszerben!"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="24"
+                       FontWeight="Bold"/>
+        </Border>
+
+        <!-- Jobb oldal -->
+        <Grid Grid.Column="1" Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Fejléc -->
+            <TextBlock Grid.Row="0"
+                       Text="Jelentkezz be!"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Margin="0,0,0,20"/>
+
+            <!-- Bejelentkező űrlap -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Felhasználónév -->
+                <TextBlock Grid.Row="0" Grid.Column="0" 
+                           Text="Felhasználónév:" 
+                           Margin="0,0,1,10"
+                           VerticalAlignment="Center"/>
+                <TextBox Grid.Row="0" Grid.Column="1" 
+                         Width="103" 
+                         Margin="0,0,1,10"
+                         HorizontalAlignment="Right"/>
+
+                <!-- Jelszó -->
+                <TextBlock Grid.Row="1" Grid.Column="0" 
+                           Text="Jelszó:" 
+                           Margin="0,0,1,10"
+                           VerticalAlignment="Center"
+                           />
+                <PasswordBox Grid.Row="1" Grid.Column="1" 
+                             Width="103" 
+                             Margin="0,0,1,10"
+                             HorizontalAlignment="Right"/>
+            </Grid>
+
+            <!-- Bejelentkezés gomb -->
+            <Button Grid.Row="1" 
+                    Content="Bejelentkezés"
+                    Width="88"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="94,59,0,0" Height="21"/>
+        </Grid>
     </Grid>
 </Page>
